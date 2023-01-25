@@ -25,6 +25,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'junit:junit:4.13.2'
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	//implementation group: 'com.github.gavlyukovskiy', name: 'datasource-decorator-spring-boot-autoconfigure', version: '1.8.1'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
