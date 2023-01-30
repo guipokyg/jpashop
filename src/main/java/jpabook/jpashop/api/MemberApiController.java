@@ -32,8 +32,8 @@ public class MemberApiController {
 
     @Data
     @AllArgsConstructor
-    static class Result<S>{
-        private S data;
+    static class Result<T>{
+        private T data;
     }
 
     @Data
