@@ -1,7 +1,7 @@
 package jpabook.jpashop;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.persistence.EntityManager;
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
 import jpabook.jpashop.domain.*;
 import jpabook.jpashop.domain.item.Book;
 import lombok.RequiredArgsConstructor;
