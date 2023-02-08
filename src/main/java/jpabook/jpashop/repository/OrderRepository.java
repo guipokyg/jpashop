@@ -102,6 +102,7 @@ public class OrderRepository {
         //left join fetch 하면 outer조인
     }
 
+
     //비슷해보이지만.. 로직의 재활용이 단점
     //v4가 성능최적화에서는 좋다.
     //데이터 변경 할 수 없다.
@@ -127,6 +128,16 @@ public class OrderRepository {
                         " join fetch oi.item i",Order.class)
                 .setFirstResult(1)
                 .setMaxResults(100)
+                .getResultList();
+    }
+
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                        "select o from Order o" +
+                                " join fetch o.member m" +
+                                " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
                 .getResultList();
     }
 

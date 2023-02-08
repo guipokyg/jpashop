@@ -8,7 +8,12 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
+/**
+ * NtoOne 관계는 여기다가 batchsize를 적어줘야한다.
+ */
+@BatchSize(size = 100)
 @Entity
 @Getter
 @Setter

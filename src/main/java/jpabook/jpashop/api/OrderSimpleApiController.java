@@ -9,6 +9,7 @@ import jpabook.jpashop.repository.SimpleOrderQueryDto;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -60,6 +61,27 @@ public class OrderSimpleApiController {
                 .collect(toList());
         return result;
     }
+    @GetMapping("/api/v3.1/simple-orders")
+    public List<SimpleOrderDto> ordersV3_page() {
+        List<Order> orders = orderRepository.findAllWithMemberDelivery();
+        List<SimpleOrderDto> result = orders.stream()
+                .map(o -> new SimpleOrderDto(o))
+                .collect(toList());
+        return result;
+    }
+
+    @GetMapping("/api/v3.1/orders")
+    public List<SimpleOrderDto> ordersV3_page(@RequestParam(value = "offset",
+            defaultValue = "0") int offset,
+                                        @RequestParam(value = "limit", defaultValue
+                                                = "100") int limit) {
+        List<Order> orders = orderRepository.findAllWithMemberDelivery(offset,
+                limit);
+        List<SimpleOrderDto> result = orders.stream()
+                .map(o -> new SimpleOrderDto(o))
+                .collect(toList());
+        return result;
+    }
 
     //바로 dto로 끄집어내기
     @GetMapping("/api/v4/simple-orders")
@@ -76,12 +98,17 @@ public class OrderSimpleApiController {
         private OrderStatus orderStatus;
         private Address address;
 
+        private List<OrderApiController.OrderItemDto> orderItems;
+
         public SimpleOrderDto(Order order) {
             orderId = order.getId();
             name = order.getMember().getName();
             dateTime = order.getOrderDate();
             orderStatus = order.getStatus();
             address = order.getDelivery().getAddress();
+            orderItems =  order.getOrderItems().stream()
+                        .map(o->new OrderApiController.OrderItemDto(o))
+                        .collect(Collectors.toList());
         }
     }
 }

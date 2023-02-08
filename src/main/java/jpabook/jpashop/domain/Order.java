@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -32,6 +33,7 @@ public class Order {
      *  cascade = CascadeType.ALL
      *  order를 persist하면 해당옵션이 있는 엔티티도 같이 persist 해줌..
      */
+    @BatchSize(size = 1000)
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
