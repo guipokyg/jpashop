@@ -7,8 +7,7 @@ spring:
       jdbc-url: jdbc:h2:tcp://localhost/~/jpashop
 
   jpa:
-    hibernate:
-      ddl-auto: update
+    hibernate.hbm2ddl.auto: update
     properties:
       hibernate:
         #show_sql: true

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class MemberApiController {
     private final MemberService memberService;
 
-    @GetMapping("api/v2/members")
+    @GetMapping("/api/v2/members")
     public Result memberV2() {
         List<Member> findMembers = memberService.findMembers();
 
